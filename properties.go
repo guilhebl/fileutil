@@ -25,7 +25,7 @@ func ReadPropertiesFile(filename string) (AppConfigProperties, error) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		if equal := strings.Index(line, "="); equal >= 0 {
+		if equal, comment := strings.Index(line, "="), strings.Index(line, "#"); equal >= 0 && comment == -1 {
 			if key := strings.TrimSpace(line[:equal]); len(key) > 0 {
 				value := ""
 				if len(line) > equal {

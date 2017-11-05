@@ -14,4 +14,13 @@ func TestReadPropertiesFile(t *testing.T) {
 		t.Error("Error properties not loaded correctly")
 	}
 
+	if props["host"] != "localhost" || props["proxyHost"] != "test" || props["protocol"] != "https://" || props["chunk"] != "" {
+		t.Error("Error properties not loaded correctly")
+	}
+
+	// should ignore whitespace and comments
+	if props["z"] != "" || props["xyz"] != "hello there" {
+		t.Error("Error comments and spaced values not loaded correctly")
+	}
+
 }
