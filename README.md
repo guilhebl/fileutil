@@ -1,5 +1,9 @@
-# FILE UTIL
+# GO Props
 
-A simple file util library containing useful methods such as
+A simple properties file util library for read/write properties file.
 
-- read / write properties file.
+Format:
+
+K=V (Key=Value)
+# (Comment)
+
