@@ -2,15 +2,26 @@ package props
 
 import (
 	"bufio"
+	"log"
 	"os"
 	"strings"
-	"log"
+	"strconv"
 )
 
-type AppConfigProperties map[string]string
+type Properties map[string]string
 
-func ReadPropertiesFile(filename string) (AppConfigProperties, error) {
-	config := AppConfigProperties{}
+func (p Properties) GetProperty(k string) string {
+	return p[k]
+}
+
+func (p Properties) GetIntProperty(k string) int64 {
+	prop, _ := strconv.ParseInt(p[k], 10, 0)
+	return prop
+}
+
+// Reads a file in the properties format
+func ReadPropertiesFile(filename string) (Properties, error) {
+	config := Properties{}
 
 	if len(filename) == 0 {
 		return config, nil
